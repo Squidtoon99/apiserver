@@ -78,7 +78,7 @@ async fn read(db: Db, question: String) -> Option<Json<Question>> {
     })
     .await
     .map(Json)
-    .ok() // Rocket redirects to 404 if not present
+    .ok()
 }
 
 #[options("/")]
