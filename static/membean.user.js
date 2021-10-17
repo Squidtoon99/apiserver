@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Membean Tracker
 // @namespace    http://tampermonkey.net/
-// @version      0.1.0
+// @version      0.1.1
 // @description  A powerful membean helper that uses a variety of tools to answer membean questions
 // @author       Squidtoon99 (https://squid.pink)
 // @updateURL    https://api.squid.pink/scripts/membean.user.js
@@ -17,8 +17,8 @@ var apiURL = "https://api.squid.pink";
 var q;
 
 const plugins = [
-  autoSelectHTMLPlugin,
-  questionPlugin,
+  autoSelectHTMLPlugin, 
+  questionPlugin, // Fetching from the api
   checkExampleSingleNode,
   checkExampleMultiNode,
   definitionOnHoverPlugin,
