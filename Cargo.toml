@@ -1,0 +1,16 @@
+[package]
+name = "hello-rocket"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rocket = {version = "0.5.0-rc.1", features = ["json", "msgpack", "uuid"]}
+reqwest = "0.11.4"
+image = "0.23.14"
+img_hash = "3.2.0"
+diesel = { version = "1.4.5", features = ["postgres"] }
+serde = { version = "1.0.123", features = ["derive"] }
+diesel_migrations = "1.3"
+rocket_sync_db_pools = {version = "0.1.0-rc.1", features = ["diesel_postgres_pool"]}

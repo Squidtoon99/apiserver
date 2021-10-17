@@ -1,0 +1,8 @@
+[global.databases]
+postgres = { url = "postgres://postgres:kdBDNuBhDhT9542@db.cdrzyjhfvjeaowbmhzgi.supabase.co/postgres"}
+
+[debug]
+log_level = "debug"
+
+[release]
+log = "normal"
