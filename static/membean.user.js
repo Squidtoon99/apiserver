@@ -2,7 +2,7 @@
 // @name         Membean Tracker
 // @namespace    http://tampermonkey.net/
 // @version      0.1.0
-// @description  try to take over the world!
+// @description  A powerful membean helper that uses a variety of tools to answer membean questions
 // @author       Squidtoon99 (https://squid.pink)
 // @updateURL    https://api.squid.pink/scripts/membean.user.js
 // @include        https://membean.com/training_sessions/*/user_state
@@ -87,9 +87,9 @@ function answer(answer_num, reason) {
   var o = Object.values(document.getElementsByClassName("choice"))[answer_num];
   cache.answer = true;
   console.log(`Found correct answer (${answer_num}): [${reason}]`);
-  // o.className = "choice correct";
-  // setTimeout(() => o.click(), 1000); // set this timeout to how long you want to wait (ms) before answering questions
-  o.click();
+  o.className = "choice correct";
+  setTimeout(() => o.click(), 1000); // set this timeout to how long you want to wait (ms) before answering questions
+  //o.click();
 }
 
 function autoNextPlugin() {
@@ -121,9 +121,7 @@ function questionPlugin() {
       if (rspObj.status == 404) {
         // temp autoclicking
         var c = document.getElementsByClassName("choice");
-        if (c.length > 0) {
-          answer(0, "autoclicking");
-        }
+        
         return;
       } else if (rspObj.status != 200) {
         reportAJAX_Error(rspObj);
