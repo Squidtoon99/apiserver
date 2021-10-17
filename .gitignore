@@ -1,0 +1,7 @@
+# not needed junk
+/target
+*.lock
+
+# secrets
+*.env
+deploy-rocket.yml
