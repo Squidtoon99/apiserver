@@ -18,7 +18,7 @@ var q;
 
 const plugins = [
   autoSelectHTMLPlugin, 
-  questionPlugin, // Fetching from the api
+  questionPlugin,
   checkExampleSingleNode,
   checkExampleMultiNode,
   definitionOnHoverPlugin,
