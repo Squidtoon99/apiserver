@@ -22,13 +22,13 @@ const plugins = [
   checkExampleSingleNode,
   checkExampleMultiNode,
   definitionOnHoverPlugin,
-  autoNextPlugin,
+  //autoNextPlugin,
 ];
 const persistent_plugins = [storeCorrectAnswerPlugin, autoTypeNewWordPlugin];
 
 const non_question_plugins = [
-  autoAnswerTextInputPlugin,
-  autoStartNewSessionPlugin,
+  //autoAnswerTextInputPlugin,
+  //autoStartNewSessionPlugin,
 ];
 
 setInterval(() => {
@@ -88,7 +88,7 @@ function answer(answer_num, reason) {
   cache.answer = true;
   console.log(`Found correct answer (${answer_num}): [${reason}]`);
   o.className = "choice correct";
-  setTimeout(() => o.click(), 1000); // set this timeout to how long you want to wait (ms) before answering questions
+  setTimeout(() => o.click(), 8000); // set this timeout to how long you want to wait (ms) before answering questions
   //o.click();
 }
 
