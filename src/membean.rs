@@ -1,13 +1,13 @@
 use rocket::{
-    Rocket, Build, Request, Response,
     fairing::AdHoc,
-    serde::{
-        Deserialize, Serialize,
-        json::{json, Json, Value}
-    },
     fairing::{Fairing, Info, Kind},
-    response::{Debug, status::Created},
     http::Header,
+    response::{status::Created, Debug},
+    serde::{
+        json::{json, Json, Value},
+        Deserialize, Serialize,
+    },
+    Build, Request, Response, Rocket,
 };
 use rocket_sync_db_pools::diesel;
 
@@ -19,12 +19,15 @@ impl Fairing for CORS {
     fn info(&self) -> Info {
         Info {
             name: "Add CORS headers to requests",
-            kind: Kind::Response
+            kind: Kind::Response,
         }
     }
     async fn on_response<'r>(&self, _request: &'r Request<'_>, response: &mut Response<'r>) {
         response.set_header(Header::new("Access-Control-Allow-Origin", "*"));
-        response.set_header(Header::new("Access-Control-Allow-Methods", "POST, GET, OPTIONS"));
+        response.set_header(Header::new(
+            "Access-Control-Allow-Methods",
+            "POST, GET, OPTIONS",
+        ));
         response.set_header(Header::new("Access-Control-Allow-Headers", "*"));
         response.set_header(Header::new("Access-Control-Allow-Credentials", "true"));
     }
@@ -40,10 +43,10 @@ type Result<T, E = Debug<diesel::result::Error>> = std::result::Result<T, E>;
 
 #[derive(Debug, Clone, Deserialize, Serialize, Queryable, Insertable)]
 #[serde(crate = "rocket::serde")]
-#[table_name="membean"]
+#[table_name = "membean"]
 struct Question {
     question: String,
-    answer: String
+    answer: String,
 }
 
 table! {
@@ -51,7 +54,7 @@ table! {
         question -> Varchar,
         answer -> Varchar,
     }
-} 
+}
 
 #[post("/", data = "<question>")]
 async fn create(db: Db, question: Json<Question>) -> Result<Created<Json<Question>>> {
@@ -60,7 +63,8 @@ async fn create(db: Db, question: Json<Question>) -> Result<Created<Json<Questio
         diesel::insert_into(membean::table)
             .values(question_value)
             .execute(conn)
-    }).await?;
+    })
+    .await?;
 
     Ok(Created::new("/").body(question))
 }
@@ -71,7 +75,10 @@ async fn read(db: Db, question: String) -> Option<Json<Question>> {
         membean::table
             .filter(membean::question.eq(question))
             .first(conn)
-    }).await.map(Json).ok()
+    })
+    .await
+    .map(Json)
+    .ok()
 }
 
 #[options("/")]
@@ -102,7 +109,9 @@ async fn run_migrations(rocket: Rocket<Build>) -> Rocket<Build> {
     embed_migrations!("migrations");
 
     let conn = Db::get_one(&rocket).await.expect("database connection");
-    conn.run(|c| embedded_migrations::run(c)).await.expect("diesel migrations");
+    conn.run(|c| embedded_migrations::run(c))
+        .await
+        .expect("diesel migrations");
 
     rocket
 }
