@@ -15,7 +15,7 @@
 var cache = {};
 var apiURL = "https://api.squid.pink";
 var q;
-// more filler 2.9.1.2.3.4
+ // oops forgot about this
 const plugins = [
   autoSelectHTMLPlugin, 
   questionPlugin, // Fetching from the api
