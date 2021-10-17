@@ -1,12 +1,15 @@
-use rocket::{Rocket, Build};    
-use rocket::fairing::AdHoc;
-use rocket::serde::json::{json, Json, Value};
-use rocket::response::{Debug, status::Created};
-use rocket::serde::{Deserialize, Serialize};   
+use rocket::{
+    Rocket, Build, Request, Response,
+    fairing::AdHoc,
+    serde::{
+        Deserialize, Serialize,
+        json::{json, Json, Value}
+    },
+    fairing::{Fairing, Info, Kind},
+    response::{Debug, status::Created},
+    http::Header,
+};
 use rocket_sync_db_pools::diesel;
-use rocket::{Request, Response};
-use rocket::fairing::{Fairing, Info, Kind};
-use rocket::http::Header;
 
 #[derive(Default)]
 pub struct CORS();
