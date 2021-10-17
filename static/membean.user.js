@@ -26,7 +26,7 @@ const plugins = [
 ];
 const persistent_plugins = [storeCorrectAnswerPlugin, autoTypeNewWordPlugin];
 
-const non_question_plugins = [
+const non_question_plugins = [ // useful only for trackers
   //autoAnswerTextInputPlugin,
   //autoStartNewSessionPlugin,
 ];
