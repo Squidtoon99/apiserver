@@ -78,7 +78,7 @@ async fn read(db: Db, question: String) -> Option<Json<Question>> {
     })
     .await
     .map(Json)
-    .ok() // back to testing
+    .ok()
 }
 
 #[options("/")]

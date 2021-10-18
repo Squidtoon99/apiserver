@@ -4,7 +4,7 @@ table! {
         stripe_customer_id -> Nullable<Text>,
     }
 }
-
+// Random comment I'm not going to like myself later
 table! {
     membean (question) {
         question -> Varchar,
