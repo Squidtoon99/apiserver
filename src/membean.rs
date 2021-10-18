@@ -10,7 +10,7 @@ use rocket::{
     Build, Request, Response, Rocket,
 };
 use rocket_sync_db_pools::diesel;
-
+// diesel is great
 #[derive(Default)]
 pub struct CORS();
 
